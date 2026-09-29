@@ -1,1 +1,62 @@
 @import "tailwindcss";
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--pry-clr);
+}
+
+@theme inline {
+    --color-acc-clr: var(--acc-clr);
+    --color-pry-clr: var(--pry-clr);
+    --color-sec-clr: var(--sec-clr);
+    --color-bg-clr: var(--bg-clr);
+}
+
+:root {
+    --pry-clr: #FFFFFF;
+    --bg-clr: #D7F9E5;
+    --acc-clr: #22c55e;
+    /* or #319C5A */
+    --sec-clr: #333333;
+    --black-clr: #030303;
+
+    --pry-ff: 'Product Sans', sans-serif;
+    --sec-ff: "Manrope", sans-serif;
+}
+
+.bg-clr {
+    color: var(--bg-clr);
+    border: 1px solid var(--bg-clr);
+}
+
+.acc-clr {
+    color: var(--acc-clr);
+    background-color: var(--acc-clr);
+    border: 1px solid var(--acc-clr);
+    text-shadow:
+        0 0 5px var(--acc-clr),
+        0 0 10px var(--acc-clr),
+        0 0 20px var(--acc-clr),
+        0 0 30px var(--acc-clr),
+        0 0 40px var(--acc-clr);
+}
+
+.txt-clr {
+    color: var(--txt-clr);
+    border: 1px solid var(--txt-clr);
+}
+
+.sec-clr {
+    color: var(--sec-clr);
+}
+
+.pry-ff {
+    font-family: var(--pry-ff);
+}
+
+.sec-ff {
+    font-family: var(--sec-ff);
+}
