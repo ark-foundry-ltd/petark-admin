@@ -22,7 +22,7 @@ import { useResetLink } from "./use-reset-link";
  * Invite acceptance. An admin with create_admin invites someone by email;
  * the link lands here as /register?token=...
  */
-export function RegisterForm() {
+export default function RegisterForm() {
   const token = useSearchParams().get("token") ?? "";
   const link = useResetLink(token);
 
@@ -83,82 +83,96 @@ function RegisterFields({
   }
 
   return (
-    <AuthShell wide footer={<FooterNote>Passwords are stored hashed</FooterNote>}>
-      <AuthHeader subtitle="Enterprise" badge="ADMIN COMMAND" />
-      <AuthTitle
-        title="Create your admin account"
-        description="You have been invited to PetArk Command. Choose a password to activate your administrative access."
-      />
-
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4" noValidate>
-        {error ? (
-          <Alert variant="error" title="Could not create account" onDismiss={() => setError(null)}>
-            {error}
-          </Alert>
-        ) : null}
-
-        <TextField
-          label="Full Name"
-          icon={<User className="h-4 w-4" />}
-          value={fullname}
-          readOnly
+    <AuthShell
+      wide
+      footer={
+        <FooterNote>
+          <span className="sec-ff">Passwords are stored hashed</span>
+        </FooterNote>
+      }
+    >
+      <div className="pry-ff">
+        <AuthHeader subtitle="Enterprise" badge="ADMIN COMMAND" />
+        <AuthTitle
+          title="Create your admin account"
+          description={
+            <span className="sec-ff">
+              You have been invited to PetArk Command. Choose a password to activate your
+              administrative access.
+            </span>
+          }
         />
 
-        <TextField
-          label="Work Email"
-          type="email"
-          icon={<Mail className="h-4 w-4" />}
-          value={email}
-          readOnly
-        />
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4" noValidate>
+          {error ? (
+            <Alert variant="error" title="Could not create account" onDismiss={() => setError(null)}>
+              <span className="sec-ff">{error}</span>
+            </Alert>
+          ) : null}
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <PasswordField
-            label="Password"
-            name="password"
-            autoComplete="new-password"
-            placeholder="Create a password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+          <TextField
+            label="Full Name"
+            icon={<User className="h-4 w-4" />}
+            value={fullname}
+            readOnly
           />
-          <PasswordField
-            label="Confirm Password"
-            name="confirm"
-            autoComplete="new-password"
-            placeholder="Repeat password"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            error={mismatch ? "Passwords do not match" : undefined}
+
+          <TextField
+            label="Work Email"
+            type="email"
+            icon={<Mail className="h-4 w-4" />}
+            value={email}
+            readOnly
           />
-        </div>
 
-        <div className="space-y-4 rounded-xl border border-stone-200 bg-stone-50 p-4">
-          <StrengthMeter password={password} title="Entropy evaluation" />
-          <RequirementsList password={password} columns={2} />
-        </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <PasswordField
+              label="Password"
+              name="password"
+              autoComplete="new-password"
+              placeholder="Create a password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <PasswordField
+              label="Confirm Password"
+              name="confirm"
+              autoComplete="new-password"
+              placeholder="Repeat password"
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
+              error={mismatch ? "Passwords do not match" : undefined}
+            />
+          </div>
 
-        <label className="flex cursor-pointer items-start gap-2.5 text-xs text-gray-600">
-          <input
-            type="checkbox"
-            checked={acknowledged}
-            onChange={(e) => setAcknowledged(e.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-green-500"
-          />
-          I will keep my credentials confidential and use this account only for authorized PetArk
-          administration.
-        </label>
+          <div className="space-y-4 rounded-xl border border-stone-200 bg-stone-50 p-4">
+            <StrengthMeter password={password} title="Entropy evaluation" />
+            <RequirementsList password={password} columns={2} />
+          </div>
 
-        <SubmitButton loading={submitting} loadingText="Creating account...">
-          Create account
-        </SubmitButton>
-      </form>
+          <label className="sec-ff flex cursor-pointer items-start gap-2.5 text-xs text-gray-600">
+            <input
+              type="checkbox"
+              checked={acknowledged}
+              onChange={(e) => setAcknowledged(e.target.checked)}
+              className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-green-500"
+            />
+            I will keep my credentials confidential and use this account only for authorized PetArk
+            administration.
+          </label>
 
-      <p className="mt-6 text-center text-xs text-gray-500">
-        Already have an account?{" "}
-        <Link href={ROUTES.login} className="font-semibold text-green-600 hover:text-green-700">
-          Sign in
-        </Link>
-      </p>
+          <SubmitButton loading={submitting} loadingText="Creating account...">
+            Create account
+          </SubmitButton>
+        </form>
+
+        <p className="sec-ff mt-6 text-center text-xs text-gray-500">
+          Already have an account?{" "}
+          <Link href={ROUTES.login} className="pry-ff font-semibold text-green-600 hover:text-green-700">
+            Sign in
+          </Link>
+        </p>
+      </div>
     </AuthShell>
   );
 }

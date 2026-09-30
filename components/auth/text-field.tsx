@@ -25,15 +25,15 @@ export function TextField({
   className = "",
   readOnly,
   ...props
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   const autoId = useId();
   const inputId = id ?? autoId;
   const errorId = `${inputId}-error`;
 
   return (
     <div>
-      <div className="mb-1.5 flex items-center justify-between gap-3">
-        <label htmlFor={inputId} className="text-xs font-semibold text-gray-700">
+      <div className="mb-1.5 flex items-center justify-between gap-3 sec-ff">
+        <label htmlFor={inputId} className="text-xs font-medium text-sec-clr">
           {label}
         </label>
         {labelRight}
@@ -51,7 +51,7 @@ export function TextField({
           readOnly={readOnly}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className={`h-12 w-full rounded-xl border text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 ${
+          className={`h-12 w-full rounded-xl border text-sm text-black-lr outline-none transition placeholder:text-gray-400 focus:border-acc-clr focus:ring-2 focus:ring-green-500/20 sec-ff ${
             icon ? "pl-11" : "pl-4"
           } ${rightSlot ? "pr-11" : "pr-4"} ${
             error ? "border-red-300" : "border-gray-200"
@@ -62,7 +62,7 @@ export function TextField({
         />
 
         {rightSlot ? (
-          <span className="absolute inset-y-0 right-2 flex items-center">{rightSlot}</span>
+          <span className="absolute inset-y-0 right-2 flex items-center sec-ff">{rightSlot}</span>
         ) : null}
       </div>
 
@@ -77,7 +77,7 @@ export function TextField({
 
 type PasswordFieldProps = Omit<TextFieldProps, "type" | "icon" | "rightSlot">;
 
-export function PasswordField(props: PasswordFieldProps) {
+export function PasswordField(props: Readonly<PasswordFieldProps>) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -90,7 +90,7 @@ export function PasswordField(props: PasswordFieldProps) {
           type="button"
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? "Hide password" : "Show password"}
-          className="rounded-lg p-2 text-gray-400 transition hover:text-gray-600"
+          className="rounded-lg p-2 text-sec-clr transition hover:text-gray-600 sec-ff"
         >
           {visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
         </button>

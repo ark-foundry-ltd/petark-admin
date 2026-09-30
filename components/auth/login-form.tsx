@@ -14,7 +14,7 @@ import { Mail } from "lucide-react";
 import { SubmitButton } from "./submit-bn";
 import { PasswordField, TextField } from "./text-field";
 
-export function LoginForm() {
+export default function LoginForm() {
   const router = useRouter();
   const { login } = useAuth();
 
@@ -76,7 +76,7 @@ export function LoginForm() {
           labelRight={
             <Link
               href={ROUTES.forgotPassword}
-              className="text-xs font-semibold text-green-600 hover:text-green-700"
+              className="text-xs text-acc-clr hover:text-green-700"
             >
               Forgot password?
             </Link>

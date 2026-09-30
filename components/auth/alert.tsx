@@ -29,8 +29,8 @@ export function Alert({ variant, title, children, onDismiss }: Readonly<AlertPro
       )}
 
       <div className="min-w-0 flex-1">
-        {title ? <p className="font-semibold">{title}</p> : null}
-        <p className={title ? "text-xs opacity-90" : "text-xs"}>{children}</p>
+        {title ? <p className="font-semibold pry-ff">{title}</p> : null}
+        <p className={title ? "text-xs opacity-90 sec-ff" : "text-xs sec-ff"}>{children}</p>
       </div>
 
       {onDismiss ? (

@@ -5,9 +5,10 @@
 import { isAxiosError } from "axios";
 import api, { ADMIN_TOKEN_KEY } from "./api";
 
-// Where adminRoutes is mounted on the backend, relative to NEXT_PUBLIC_API_URL.
-// Change this one line if your mount path differs.
-const ADMIN_API = "/api/admin";
+// Where adminRoutes is mounted, relative to the axios baseURL
+// (NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1), so this hits /api/v1/admin/...
+// Change this one line if the backend mounts the admin router somewhere else.
+const ADMIN_API = "/admin";
 
 export const ROUTES = {
   login: "/login",

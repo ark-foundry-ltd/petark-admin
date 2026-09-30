@@ -1,7 +1,7 @@
 // lib/api.ts
 import axios from "axios";
 
-export const ADMIN_TOKEN_KEY = process.env.ADMIN_TOKEN_KEY || "admin_token";
+export const ADMIN_TOKEN_KEY = "admin_token";
 
 // Fired so the AuthProvider can react (with the Next router) instead of
 // this file doing a hard redirect.

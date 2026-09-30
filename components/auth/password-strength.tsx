@@ -13,9 +13,9 @@ export function StrengthMeter({ password, title }: Readonly<{ password: string; 
 
   return (
     <div>
-      <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+      <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-sec-clr">
         <span>{title}</span>
-        <span aria-live="polite" className={score === PASSWORD_RULES.length ? "text-green-600" : ""}>
+        <span aria-live="polite" className={score === PASSWORD_RULES.length ? "text-acc-lr" : ""}>
           {label}
         </span>
       </div>
