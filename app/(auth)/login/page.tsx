@@ -1,12 +1,11 @@
 // app/(auth)/login/page.tsx
-
-import { Metadata } from "next";
 import LoginForm from "@/components/auth/login-form";
-
-export const metadata: Metadata = {
-    title: "Login",
-};
+import { GuestOnly } from "@/components/auth/guest-only"; // your file name may differ
 
 export default function LoginPage() {
-    return <LoginForm />;
+  return (
+    <GuestOnly>
+      <LoginForm />
+    </GuestOnly>
+  );
 }

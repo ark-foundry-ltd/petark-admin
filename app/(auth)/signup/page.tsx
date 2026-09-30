@@ -1,12 +1,17 @@
 // app/(auth)/signup/page.tsx
+import type { Metadata } from "next";
+import { Suspense } from "react";
 
-import { Metadata } from "next";
 import RegisterForm from "@/components/auth/register-form";
 
 export const metadata: Metadata = {
-    title: "Sign Up",
+  title: "Create your admin account | PetArk Command",
 };
 
-export default function SignUpPage() {
-    return <RegisterForm />;
+export default function SignupPage() {
+  return (
+    <Suspense fallback={null}>
+      <RegisterForm />
+    </Suspense>
+  );
 }
