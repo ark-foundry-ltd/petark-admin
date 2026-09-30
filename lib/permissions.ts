@@ -12,6 +12,8 @@ export const PERMISSIONS = {
   LIST_PET_OWNERS: "list_pet_owners",
   VIEW_SUBSCRIPTIONS: "view_subscriptions",
   LIST_REFERRALS: "list_referrals",
+  VIEW_REFERRAL_DETAILS: "view_referral_details",
+  ADD_REFERRAL_EVENT: "add_referral_event",
   LIST_SUPPORT_REQUESTS: "list_support_requests",
   LIST_ADMINS: "list_admins",
   CREATE_ADMIN: "create_admin",
