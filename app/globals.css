@@ -21,6 +21,7 @@ body {
     --acc-clr: #22c55e;
     /* or #319C5A */
     --sec-clr: #333333;
+    --tet-clr: #d1d5dc;
     --black-clr: #030303;
 
     --pry-ff: 'Product Sans', sans-serif;
@@ -44,9 +45,8 @@ body {
         0 0 40px var(--acc-clr);
 }
 
-.txt-clr {
-    color: var(--txt-clr);
-    border: 1px solid var(--txt-clr);
+.tet-clr {
+    color: var(--tet-clr);
 }
 
 .sec-clr {

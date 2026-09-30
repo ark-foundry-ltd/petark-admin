@@ -89,7 +89,7 @@ export default function LoginForm() {
         </SubmitButton>
       </form>
 
-      <p className="mt-6 text-center text-xs text-gray-500">
+      <p className="mt-6 text-center text-xs text-gray-500 sec-ff">
         Access is by invitation. Contact your PetArk administrator to get an account.
       </p>
     </AuthShell>
