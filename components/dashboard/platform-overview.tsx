@@ -58,7 +58,7 @@ export default function PlatformOverview() {
 
       <div
         role="note"
-        className="mt-6 flex items-start gap-3 rounded-2xl border border-acc-clr bg-bg-clr px-5 py-4 "
+        className="mt-6 flex items-start gap-3 rounded-2xl border border-gray-300 bg-bg-clr px-5 py-4 "
       >
         <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-acc-clr" />
         <p className="pry-ff text-sm text-gray-600">
