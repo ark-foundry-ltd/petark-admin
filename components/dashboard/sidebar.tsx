@@ -42,7 +42,6 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { href: "/dashboard", label: "Overview", icon: LayoutGrid, permission: PERMISSIONS.VIEW_DASHBOARD },
-  { href: "/dashboard/clinics", label: "Clinics", icon: Building2, permission: PERMISSIONS.LIST_CLINICS },
   {
     href: "/dashboard/users",
     label: "Users",
@@ -331,7 +330,7 @@ function MobileDrawer() {
           </button>
         </div>
 
-        <nav aria-label="Main" className="flex-1 space-y-1 overflow-y-auto px-2 py-2">
+        <nav aria-label="Main" className="flex-1 space-y-1 overflow-y-auto px-2 py-2 pry-ff">
           {items.map((item) => (
             <NavLink
               key={item.href}

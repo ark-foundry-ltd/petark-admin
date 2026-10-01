@@ -1,0 +1,68 @@
+import { History, Loader2 } from 'lucide-react';
+import type { ClinicSubscriptionRow } from '@/lib/admin-subscriptions';
+import { DaysLeft, PlanBadge, StateBadge, capitalize, formatDate } from './shared';
+
+interface Props {
+  rows: ClinicSubscriptionRow[];
+  loading: boolean;
+  onViewHistory: (row: ClinicSubscriptionRow) => void;
+}
+
+const HEADERS = ['Clinic', 'Status', 'Plan', 'Billing', 'Start date', 'Expires / renews', 'Days left', ''];
+
+export default function SubscriptionTable({ rows, loading, onViewHistory }: Props) {
+  return (
+    <div className="relative overflow-x-auto rounded-2xl border border-green-200 bg-white">
+      <table className="w-full min-w-[900px] text-sm">
+        <thead className="bg-green-50 text-left text-gray-600">
+          <tr>
+            {HEADERS.map((h) => (
+              <th key={h} className="px-4 py-3 font-medium">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100">
+          {rows.map((r) => (
+            <tr key={r.clinicId} className="hover:bg-green-50/50">
+              <td className="px-4 py-3">
+                <p className="font-medium text-gray-900">{r.clinicName || 'Unnamed clinic'}</p>
+                <p className="text-xs text-gray-500">{r.email}</p>
+              </td>
+              <td className="px-4 py-3"><StateBadge state={r.state} /></td>
+              <td className="px-4 py-3"><PlanBadge plan={r.plan} /></td>
+              <td className="px-4 py-3">
+                {r.state === 'trial' ? 'Free trial' : capitalize(r.billingCycle)}
+              </td>
+              <td className="px-4 py-3">{formatDate(r.startedAt)}</td>
+              <td className="px-4 py-3">{formatDate(r.expiresAt)}</td>
+              <td className="px-4 py-3"><DaysLeft days={r.daysRemaining} /></td>
+              <td className="px-4 py-3 text-right">
+                <button
+                  type="button"
+                  onClick={() => onViewHistory(r)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-100"
+                >
+                  <History size={14} /> History
+                </button>
+              </td>
+            </tr>
+          ))}
+
+          {!loading && rows.length === 0 && (
+            <tr>
+              <td colSpan={HEADERS.length} className="px-4 py-12 text-center text-gray-500">
+                No clinics match these filters.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/60">
+          <Loader2 className="animate-spin text-gray-500" />
+        </div>
+      )}
+    </div>
+  );
+}
