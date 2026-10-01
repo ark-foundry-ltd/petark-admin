@@ -326,8 +326,8 @@ export function OwnerDetail({ id, onClose }: { id: string; onClose: () => void }
                   <li key={p._id} className="flex items-center gap-3 p-3">
                     <PawPrint size={18} className="shrink-0 text-black/40" />
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-medium text-black-clr">{p.name || 'Unnamed pet'}</p>
-                      <p className="text-xs text-black/50">{petLine(p) || '—'}</p>
+                      <p className="truncate text-sm font-medium text-black-clr pry-ff">{p.name || 'Unnamed pet'}</p>
+                      <p className="text-xs text-black/50 sec-ff">{petLine(p) || '—'}</p>
                     </div>
                   </li>
                 ))}
