@@ -13,6 +13,8 @@ body {
     --color-pry-clr: var(--pry-clr);
     --color-sec-clr: var(--sec-clr);
     --color-bg-clr: var(--bg-clr);
+    --color-tet-clr: var(--tet-clr);
+    --color-black-clr: var(--black-clr);
 }
 
 :root {
