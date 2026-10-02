@@ -12,7 +12,7 @@ const ADMIN_API = "/admin";
 
 export const ROUTES = {
   login: "/login",
-  register: "/register",
+  register: "/signup",
   forgotPassword: "/forgot-password",
   resetPassword: "/reset-password",
   changePassword: "/change-password",
