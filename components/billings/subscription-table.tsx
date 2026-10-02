@@ -40,7 +40,7 @@ export default function SubscriptionTable({ rows, loading, onViewHistory }: Read
                 <button
                   type="button"
                   onClick={() => onViewHistory(r)}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-100"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-pry-clr px-2.5 py-1.5 text-xs font-medium text-sec-clr hover:bg-gray-100 cursor-pointer pry-ff"
                 >
                   <History size={14} /> History
                 </button>
@@ -50,7 +50,7 @@ export default function SubscriptionTable({ rows, loading, onViewHistory }: Read
 
           {!loading && rows.length === 0 && (
             <tr>
-              <td colSpan={HEADERS.length} className="px-4 py-12 text-center text-gray-500">
+              <td colSpan={HEADERS.length} className="px-4 py-12 text-center text-tet-clr sec-ff">
                 No clinics match these filters.
               </td>
             </tr>
@@ -59,8 +59,8 @@ export default function SubscriptionTable({ rows, loading, onViewHistory }: Read
       </table>
 
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white/60">
-          <Loader2 className="animate-spin text-gray-500" />
+        <div className="absolute inset-0 flex items-center justify-center bg-pry-clr/60">
+          <Loader2 className="animate-spin text-acc-clr" />
         </div>
       )}
     </div>
