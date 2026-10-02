@@ -66,11 +66,11 @@ export default function HistoryDrawer({ clinic, onClose }: Props) {
     <div className="fixed inset-0 z-50 flex justify-end">
       <div className="absolute inset-0 bg-black/30" onClick={onClose} />
 
-      <aside className="relative flex h-full w-full max-w-md flex-col bg-white shadow-xl">
+      <aside className="relative flex h-full w-full max-w-md flex-col bg-pry-clr shadow-xl">
         <header className="flex items-start justify-between border-b border-gray-200 p-5">
           <div>
-            <p className="text-xs text-gray-500">Subscription history</p>
-            <h2 className="text-lg font-semibold text-gray-900">{clinic.name}</h2>
+            <p className="text-xs text-tet-clr sec-ff">Subscription history</p>
+            <h2 className="text-lg font-semibold text-sec-clr pry-ff">{clinic.name}</h2>
           </div>
           <button onClick={onClose} className="rounded-lg p-1.5 hover:bg-gray-100" aria-label="Close">
             <X size={18} />
@@ -83,21 +83,21 @@ export default function HistoryDrawer({ clinic, onClose }: Props) {
             return (
               <div key={e._id} className="rounded-xl border border-gray-200 p-4">
                 <div className="flex items-center justify-between">
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${ev.className}`}>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium pry-ff ${ev.className}`}>
                     {ev.label}
                   </span>
-                  <span className="text-xs text-gray-500">{formatDate(e.createdAt)}</span>
+                  <span className="text-xs text-tet-clr pry-ff">{formatDate(e.createdAt)}</span>
                 </div>
 
-                <p className="mt-2 text-sm font-medium text-gray-900">
+                <p className="mt-2 text-sm font-medium text-sec-clr pry-ff">
                   {capitalize(e.plan)}
                   {e.billingCycle ? ` · ${capitalize(e.billingCycle)}` : ''}
                   {e.previousPlan ? (
-                    <span className="font-normal text-gray-500"> (from {capitalize(e.previousPlan)})</span>
+                    <span className="font-normal"> (from {capitalize(e.previousPlan)})</span>
                   ) : null}
                 </p>
 
-                <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-600">
+                <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-600 sec-ff">
                   <dt>Period start</dt>
                   <dd className="text-right">{formatDate(e.startedAt)}</dd>
                   <dt>Period end</dt>
@@ -117,7 +117,7 @@ export default function HistoryDrawer({ clinic, onClose }: Props) {
                 </dl>
 
                 {e.backfilled && (
-                  <p className="mt-2 text-[11px] text-gray-400">Imported from existing subscription data</p>
+                  <p className="mt-2 text-[11px] text-tet-clr pry-ff">Imported from existing subscription data</p>
                 )}
               </div>
             );

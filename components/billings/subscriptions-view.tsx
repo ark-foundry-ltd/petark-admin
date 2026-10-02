@@ -23,7 +23,7 @@ import HistoryDrawer from '@/components/billings/history-drawer';
 const LIMIT = 15;
 
 const inputClass =
-  'rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-green-500';
+  'rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-green-500 focus:ring-1 focus:ring-acc-clr sec-ff';
 
 export default function SubscriptionsView() {
   const [summary, setSummary] = useState<SubscriptionSummary | null>(null);
@@ -134,13 +134,13 @@ export default function SubscriptionsView() {
 
       <section ref={clinicsRef} className="scroll-mt-6 space-y-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-950">All clinics</h2>
-          <p className="text-sm text-gray-500">Status, plan, billing cycle and renewal date for every clinic</p>
+          <h2 className="text-lg font-semibold text-black-clr sec-ff">All clinics</h2>
+          <p className="text-sm text-tet-clr pry-ff">Status, plan, billing cycle and renewal date for every clinic</p>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <div className="relative min-w-[220px] flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <div className="relative min-w-55 flex-1 sec-ff">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-tet-clr" />
             <input
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}

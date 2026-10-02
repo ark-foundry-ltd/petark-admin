@@ -62,9 +62,9 @@ export function DaysLeft({ days }: { days: number | null }) {
 export function DaysLeftPill({ days }: { days: number | null }) {
   if (days == null) return null;
   const tone =
-    days <= 3 ? 'bg-red-50 text-red-700 ring-red-600/20' : 'bg-white text-gray-700 ring-gray-300';
+    days <= 3 ? 'bg-red-50 text-red-700 ring-red-600/20' : 'bg-pry-clr text-gray-700 ring-gray-300';
   return (
-    <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset ${tone}`}>
+    <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset pry-ff ${tone}`}>
       {days === 0 ? 'Today' : `${days}d left`}
     </span>
   );

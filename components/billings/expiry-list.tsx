@@ -50,8 +50,8 @@ export default function ExpiryList({ title, subtitle, type, emptyText, days = 30
             className="flex w-full items-center justify-between gap-3 rounded-xl bg-green-50 p-3 text-left transition hover:bg-green-100 cursor-pointer"
           >
             <div className="min-w-0">
-              <p className="truncate font-medium text-sec-clr sec-ff">{r.clinicName || 'Unnamed clinic'}</p>
-              <div className="mt-1 flex items-center gap-2 pry-ff">
+              <p className="truncate font-medium text-sec-clr pry-ff">{r.clinicName || 'Unnamed clinic'}</p>
+              <div className="mt-1 flex items-center gap-2 sec-ff">
                 <PlanBadge plan={r.plan} />
                 <span className="text-xs text-tet-clr">{formatDate(r.expiresAt)}</span>
               </div>
@@ -60,12 +60,12 @@ export default function ExpiryList({ title, subtitle, type, emptyText, days = 30
           </button>
         ))}
 
-        {loading && <p className="py-6 text-center text-sm text-gray-400">Loading…</p>}
+        {loading && <p className="py-6 text-center text-sm text-tet-clr sec-ff">Loading…</p>}
         {!loading && rows.length === 0 && (
-          <p className="py-6 text-center text-sm text-gray-500">{emptyText}</p>
+          <p className="py-6 text-center text-sm text-tet-clr sec-ff">{emptyText}</p>
         )}
         {!loading && total > rows.length && (
-          <p className="text-center text-xs text-gray-500">
+          <p className="text-center text-xs text-tet-clr pry-ff">
             Showing {rows.length} of {total}
           </p>
         )}

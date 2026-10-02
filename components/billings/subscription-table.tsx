@@ -10,32 +10,32 @@ interface Props {
 
 const HEADERS = ['Clinic', 'Status', 'Plan', 'Billing', 'Start date', 'Expires / renews', 'Days left', ''];
 
-export default function SubscriptionTable({ rows, loading, onViewHistory }: Props) {
+export default function SubscriptionTable({ rows, loading, onViewHistory }: Readonly<Props>) {
   return (
-    <div className="relative overflow-x-auto rounded-2xl border border-green-200 bg-white">
-      <table className="w-full min-w-[900px] text-sm">
+    <div className="relative overflow-x-auto rounded-2xl border border-green-200 bg-pry-clr">
+      <table className="w-full min-w-225 text-sm">
         <thead className="bg-green-50 text-left text-gray-600">
           <tr>
             {HEADERS.map((h) => (
-              <th key={h} className="px-4 py-3 font-medium">{h}</th>
+              <th key={h} className="px-4 py-3 font-medium sec-ff uppercase">{h}</th>
             ))}
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
           {rows.map((r) => (
             <tr key={r.clinicId} className="hover:bg-green-50/50">
-              <td className="px-4 py-3">
-                <p className="font-medium text-gray-900">{r.clinicName || 'Unnamed clinic'}</p>
+              <td className="px-4 py-3 pry-ff">
+                <p className="font-medium text-sec-clr">{r.clinicName || 'Unnamed clinic'}</p>
                 <p className="text-xs text-gray-500">{r.email}</p>
               </td>
-              <td className="px-4 py-3"><StateBadge state={r.state} /></td>
+              <td className="px-4 py-3 pry-ff"><StateBadge state={r.state} /></td>
               <td className="px-4 py-3"><PlanBadge plan={r.plan} /></td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-3 pry-ff">
                 {r.state === 'trial' ? 'Free trial' : capitalize(r.billingCycle)}
               </td>
-              <td className="px-4 py-3">{formatDate(r.startedAt)}</td>
-              <td className="px-4 py-3">{formatDate(r.expiresAt)}</td>
-              <td className="px-4 py-3"><DaysLeft days={r.daysRemaining} /></td>
+              <td className="px-4 py-3 pry-ff">{formatDate(r.startedAt)}</td>
+              <td className="px-4 py-3 pry-ff">{formatDate(r.expiresAt)}</td>
+              <td className="px-4 py-3 pry-ff"><DaysLeft days={r.daysRemaining} /></td>
               <td className="px-4 py-3 text-right">
                 <button
                   type="button"
