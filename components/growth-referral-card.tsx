@@ -53,7 +53,7 @@ function CopyRow({ label, value }: Readonly<{ label: string; value: string }>) {
         type="button"
         onClick={copy}
         aria-label={`Copy ${label.toLowerCase()}`}
-        className="rounded-lg bg-pry-clr p-2 text-white transition-opacity hover:opacity-90"
+        className="rounded-lg bg-pry-clr p-2 text-pry-clr transition-opacity hover:opacity-90"
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       </button>
@@ -118,7 +118,7 @@ export default function GrowthReferralCard() {
           <button
             type="button"
             onClick={() => setReload((value) => value + 1)}
-            className="pry-ff mt-3 rounded-full bg-pry-clr px-5 py-2 text-sm font-semibold text-white"
+            className="pry-ff mt-3 rounded-full bg-pry-clr px-5 py-2 text-sm font-semibold text-pry-clr"
           >
             Try again
           </button>

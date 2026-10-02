@@ -37,7 +37,7 @@ const PLAN_STYLES: Record<string, string> = {
   starter: 'bg-amber-100 text-amber-800',
   standard: 'bg-sky-100 text-sky-800',
   pro: 'bg-green-200 text-green-900',
-  enterprise: 'bg-neutral-800 text-white'
+  enterprise: 'bg-amber-800 text-amber-600'
 };
 
 export function PlanBadge({ plan }: { plan: string }) {

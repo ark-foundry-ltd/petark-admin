@@ -145,7 +145,7 @@ export function ReferralDetail({
 
           {referral ? (
             <>
-              <section className="space-y-3 rounded-2xl border border-line-clr bg-tint-soft-clr p-4">
+              <section className="space-y-3 rounded-2xl border border-tet-clr bg-tint-soft-clr p-4">
                 <div className="flex items-center justify-between gap-3">
                   <p className="pry-ff text-sm font-semibold tracking-wide text-txt-clr">
                     {referral.code}
@@ -155,32 +155,32 @@ export function ReferralDetail({
 
                 <dl className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <dt className="sec-ff text-xs text-muted-clr">Referrer</dt>
+                    <dt className="sec-ff text-xs text-black-clr">Referrer</dt>
                     <dd className="pry-ff font-semibold text-txt-clr">
                       {referral.referrer?.clinicName ?? "Unknown clinic"}
                     </dd>
-                    <dd className="sec-ff truncate text-xs text-muted-clr">
+                    <dd className="sec-ff truncate text-xs text-sec-clr">
                       {referral.referrer?.email}
                     </dd>
                   </div>
                   <div>
-                    <dt className="sec-ff text-xs text-muted-clr">Referred clinic</dt>
-                    <dd className="pry-ff font-semibold text-txt-clr">
+                    <dt className="sec-ff text-xs text-black-clr">Referred clinic</dt>
+                    <dd className="pry-ff font-semibold text-sec-clr">
                       {referral.referred?.clinicName ?? "Unknown clinic"}
                     </dd>
-                    <dd className="sec-ff truncate text-xs text-muted-clr">
+                    <dd className="sec-ff truncate text-xs text-sec-clr">
                       {referral.referred?.email}
                     </dd>
                   </div>
                   <div>
-                    <dt className="sec-ff text-xs text-muted-clr">Signed up</dt>
-                    <dd className="pry-ff font-semibold text-txt-clr">
+                    <dt className="sec-ff text-xs text-black-clr">Signed up</dt>
+                    <dd className="pry-ff font-semibold text-sec-clr">
                       {formatDate(referral.createdAt)}
                     </dd>
                   </div>
                   <div>
-                    <dt className="sec-ff text-xs text-muted-clr">Converted</dt>
-                    <dd className="pry-ff font-semibold text-txt-clr">
+                    <dt className="sec-ff text-xs text-black-clr">Converted</dt>
+                    <dd className="pry-ff font-semibold text-sec-clr">
                       {formatDate(referral.convertedAt)}
                     </dd>
                   </div>
@@ -197,17 +197,17 @@ export function ReferralDetail({
                 <h3 id="timeline-title" className="pry-ff text-sm font-bold text-txt-clr">
                   Timeline
                 </h3>
-                <ol className="mt-3 space-y-4 border-l border-line-clr pl-4">
+                <ol className="mt-3 space-y-4 border-l border-acc-clr pl-4">
                   {(referral.events ?? []).map((item, index) => (
                     <li key={`${item.at}-${index}`} className="relative">
                       <span className="absolute -left-[1.3rem] top-1.5 h-2.5 w-2.5 rounded-full bg-pry-clr" />
-                      <p className="pry-ff text-sm font-semibold text-txt-clr">
+                      <p className="pry-ff text-sm font-semibold text-sec-clr">
                         {EVENT_LABELS[item.type] ?? item.type}
                       </p>
                       {item.note ? (
-                        <p className="sec-ff mt-0.5 text-sm text-txt-clr">{item.note}</p>
+                        <p className="sec-ff mt-0.5 text-sm text-sec-clr">{item.note}</p>
                       ) : null}
-                      <p className="sec-ff mt-0.5 text-xs text-muted-clr">
+                      <p className="sec-ff mt-0.5 text-xs text-sec-clr">
                         {formatDate(item.at)}
                         {item.byName ? ` by ${item.byName}` : ""}
                       </p>
@@ -260,7 +260,7 @@ export function ReferralDetail({
                   />
 
                   {formError ? (
-                    <p role="alert" className="sec-ff text-sm text-muted-clr">
+                    <p role="alert" className="sec-ff text-sm text-sec-clr">
                       {formError}
                     </p>
                   ) : null}
@@ -268,7 +268,7 @@ export function ReferralDetail({
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="pry-ff h-11 w-full rounded-xl bg-pry-clr text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+                    className="pry-ff h-11 w-full rounded-xl bg-acc-clr text-sm font-semibold text-pry-clr transition-opacity hover:opacity-90 disabled:opacity-60"
                   >
                     {submitting ? "Saving..." : "Save event"}
                   </button>

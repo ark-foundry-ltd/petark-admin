@@ -5,12 +5,12 @@ import { ChevronLeft, ChevronRight, Inbox, TriangleAlert } from "lucide-react";
 
 const BADGE_STYLES: Record<string, string> = {
   signed_up: "bg-line-clr/40 text-txt-clr",
-  converted: "bg-tint-clr text-txt-clr",
-  rewarded: "bg-pry-clr text-white",
-  rejected: "bg-txt-clr/10 text-muted-clr",
+  converted: "bg-tint-clr text-indigo-400",
+  rewarded: "bg-pry-clr text-acc-clr",
+  rejected: "bg-txt-clr/10 text-red-400",
   pending: "bg-line-clr/40 text-txt-clr",
-  accepted: "bg-tint-clr text-txt-clr",
-  declined: "bg-txt-clr/10 text-muted-clr",
+  accepted: "bg-tint-clr text-acc-clr",
+  declined: "bg-txt-clr/10 text-orange-400",
 };
 
 const BADGE_LABELS: Record<string, string> = {
@@ -33,7 +33,7 @@ export function StatusBadge({ status }: Readonly<{ status: string }>) {
   return (
     <span
       className={`pry-ff inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${
-        BADGE_STYLES[status] ?? "bg-line-clr/40 text-txt-clr"
+        BADGE_STYLES[status] ?? "bg-pry-clr/40"
       }`}
     >
       {labelFor(status)}
@@ -118,7 +118,7 @@ export function ErrorState({
         <button
           type="button"
           onClick={onRetry}
-          className="pry-ff mt-4 rounded-full bg-pry-clr px-5 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          className="pry-ff mt-4 rounded-full bg-acc-clr px-5 py-2 text-sm font-semibold text-pry-clr transition-opacity hover:opacity-90"
         >
           Try again
         </button>
@@ -138,4 +138,4 @@ export function RowsSkeleton({ rows = 5 }: Readonly<{ rows?: number }>) {
 }
 
 export const inputClass =
-  "w-full rounded-xl border border-line-clr bg-tint-soft-clr px-3 py-2.5 text-sm text-txt-clr outline-none transition placeholder:text-muted-clr focus:border-pry-clr focus:ring-2 focus:ring-pry-clr/20";
+  "w-full rounded-xl border border-tet-clr bg-tint-soft-clr px-3 py-2.5 text-sm text-sec-clr outline-none transition placeholder:text-sec-clr focus:border-pry-clr focus:ring-2 sec-ff focus:ring-acc-clr";

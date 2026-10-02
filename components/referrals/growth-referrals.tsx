@@ -98,7 +98,7 @@ export function GrowthReferrals({ onChanged }: Readonly<{ onChanged: () => void 
           <>
             <div
               aria-hidden="true"
-              className="pry-ff hidden px-4 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-clr lg:grid lg:grid-cols-[1.4fr_1.4fr_0.9fr_0.9fr_0.8fr] lg:gap-4"
+              className="pry-ff hidden px-4 pb-2 text-xs font-semibold uppercase tracking-wide text-sec-clr lg:grid lg:grid-cols-[1.4fr_1.4fr_0.9fr_0.9fr_0.8fr] lg:gap-4"
             >
               <span>Referrer</span>
               <span>Referred clinic</span>
@@ -113,10 +113,10 @@ export function GrowthReferrals({ onChanged }: Readonly<{ onChanged: () => void 
                   <button
                     type="button"
                     onClick={() => setSelectedId(item.id)}
-                    className="grid w-full gap-3 rounded-2xl border border-line-clr bg-bg-clr p-4 text-left transition-colors hover:bg-tint-soft-clr sm:grid-cols-2 lg:grid-cols-[1.4fr_1.4fr_0.9fr_0.9fr_0.8fr] lg:items-center lg:gap-4"
+                    className="grid w-full gap-3 rounded-2xl border border-tet-clr bg-bg-clr p-4 text-left transition-colors hover:bg-tint-soft-clr sm:grid-cols-2 lg:grid-cols-[1.4fr_1.4fr_0.9fr_0.9fr_0.8fr] lg:items-center lg:gap-4"
                   >
                     <div className="min-w-0">
-                      <span className="sec-ff mb-0.5 block text-[11px] uppercase tracking-wide text-muted-clr lg:hidden">
+                      <span className="sec-ff mb-0.5 block text-[11px] uppercase tracking-wide  lg:hidden">
                         Referrer
                       </span>
                       <p className="pry-ff truncate text-sm font-semibold text-txt-clr">
@@ -124,18 +124,18 @@ export function GrowthReferrals({ onChanged }: Readonly<{ onChanged: () => void 
                       </p>
                     </div>
                     <div className="min-w-0">
-                      <span className="sec-ff mb-0.5 block text-[11px] uppercase tracking-wide text-muted-clr lg:hidden">
+                      <span className="sec-ff mb-0.5 block text-[11px] uppercase tracking-wide text-sec-clr lg:hidden">
                         Referred clinic
                       </span>
-                      <p className="pry-ff truncate text-sm font-semibold text-txt-clr">
+                      <p className="pry-ff truncate text-sm font-semibold text-black-clr">
                         {item.referred?.clinicName ?? "Unknown clinic"}
                       </p>
                     </div>
-                    <p className="pry-ff text-sm tracking-wide text-txt-clr">{item.code}</p>
+                    <p className="pry-ff text-sm tracking-wide text-black-clr">{item.code}</p>
                     <div>
                       <StatusBadge status={item.status} />
                     </div>
-                    <p className="sec-ff text-sm text-muted-clr">{formatDate(item.createdAt)}</p>
+                    <p className="sec-ff text-sm text-sec-clr">{formatDate(item.createdAt)}</p>
                   </button>
                 </li>
               ))}
