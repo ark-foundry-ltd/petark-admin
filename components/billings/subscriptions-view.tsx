@@ -88,9 +88,11 @@ export default function SubscriptionsView() {
     setHistoryFor({ id: r.clinicId, name: r.clinicName || 'Unnamed clinic' });
 
   return (
-    <main className="space-y-6 p-6">
+    // min-w-0 + w-full: stops a wide table from stretching the whole page
+    // when this sits inside a flex layout next to the sidebar.
+    <main className="w-full min-w-0 space-y-6 p-4 sm:p-6">
       <header>
-        <h1 className="text-3xl font-bold text-black-clr sec-ff">Subscriptions &amp; Billing</h1>
+        <h1 className="text-2xl font-bold text-black-clr sm:text-3xl sec-ff">Subscriptions &amp; Billing</h1>
         <p className="text-sm text-tet-clr pry-ff">
           Platform billing data is fully visible to admins, including Paystack transactions.
         </p>
@@ -107,12 +109,14 @@ export default function SubscriptionsView() {
       <SummaryCards summary={summary} onSelect={filterFromCard} />
 
       <div className="grid gap-6 xl:grid-cols-3">
-        <div className="space-y-6 xl:col-span-2">
+        {/* min-w-0 on grid children is what lets the tables scroll inside
+            their own box instead of widening the page */}
+        <div className="min-w-0 space-y-6 xl:col-span-2">
           <TierBreakdown summary={summary} />
           <TransactionsTable />
         </div>
 
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-6">
           <ExpiryList
             title="Trial countdown pipeline"
             subtitle="Trials ordered by urgency"
@@ -132,14 +136,16 @@ export default function SubscriptionsView() {
         </div>
       </div>
 
-      <section ref={clinicsRef} className="scroll-mt-6 space-y-4">
+      <section ref={clinicsRef} className="min-w-0 scroll-mt-6 space-y-4">
         <div>
           <h2 className="text-lg font-semibold text-black-clr sec-ff">All clinics</h2>
           <p className="text-sm text-tet-clr pry-ff">Status, plan, billing cycle and renewal date for every clinic</p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          <div className="relative min-w-55 flex-1 sec-ff">
+        {/* Mobile: search on its own row, filters in a 2-column grid.
+            sm and up: one wrapping row. */}
+        <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+          <div className="relative col-span-2 min-w-55 flex-1 sec-ff">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-tet-clr" />
             <input
               value={search}
@@ -149,7 +155,7 @@ export default function SubscriptionsView() {
             />
           </div>
 
-          <select className={inputClass} value={state}
+          <select className={`${inputClass} w-full sm:w-auto`} value={state}
             onChange={(e) => { setState(e.target.value as SubscriptionState | ''); setPage(1); }}>
             <option value="">All statuses</option>
             <option value="subscribed">Subscribed</option>
@@ -157,7 +163,7 @@ export default function SubscriptionsView() {
             <option value="unsubscribed">Unsubscribed</option>
           </select>
 
-          <select className={inputClass} value={plan}
+          <select className={`${inputClass} w-full sm:w-auto`} value={plan}
             onChange={(e) => { setPlan(e.target.value); setPage(1); }}>
             <option value="">All plans</option>
             <option value="free">Free</option>
@@ -166,7 +172,7 @@ export default function SubscriptionsView() {
             <option value="pro">Pro</option>
           </select>
 
-          <select className={inputClass} value={cycle}
+          <select className={`${inputClass} col-span-2 w-full sm:col-span-1 sm:w-auto`} value={cycle}
             onChange={(e) => { setCycle(e.target.value as BillingCycle | ''); setPage(1); }}>
             <option value="">Monthly &amp; annual</option>
             <option value="monthly">Monthly</option>
@@ -174,9 +180,19 @@ export default function SubscriptionsView() {
           </select>
         </div>
 
-        <SubscriptionTable rows={rows} loading={loading} onViewHistory={openHistory} />
+        {/* Horizontal scroller. The [&_table] rule gives whatever table
+            SubscriptionTable renders a minimum width, so columns keep their
+            size and the box scrolls instead of squashing them. */}
+        <div
+          role="region"
+          aria-label="All clinics subscriptions table"
+          tabIndex={0}
+          className="overflow-x-auto overscroll-x-contain rounded-2xl [&_table]:min-w-224 [&_table]:whitespace-nowrap"
+        >
+          <SubscriptionTable rows={rows} loading={loading} onViewHistory={openHistory} />
+        </div>
 
-        <div className="flex items-center justify-between text-sm text-gray-600">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-gray-600">
           <span>{total} clinic{total === 1 ? '' : 's'}</span>
           <div className="flex items-center gap-2">
             <button

@@ -41,7 +41,7 @@ export default function TransactionsTable() {
   }, [page]);
 
   return (
-    <section className="rounded-2xl border border-green-200 bg-white p-5">
+    <section className="min-w-0 rounded-2xl border border-green-200 bg-white p-4 sm:p-5">
       <h2 className="text-lg font-semibold text-black-clr sec-ff">Paystack transactions</h2>
       <p className="text-sm text-tet-clr pry-ff">Most recent platform charges</p>
 
@@ -51,49 +51,58 @@ export default function TransactionsTable() {
         </p>
       ) : (
         <>
-          <div className="relative mt-4 overflow-x-auto rounded-xl border border-green-100">
-            <table className="w-full min-w-160 text-sm">
-              <thead className="bg-green-50 text-left text-gray-600 sec-ff uppercase">
-                <tr>
-                  {['Clinic', 'Amount', 'Date', 'Plan', 'Cycle', 'Status'].map((h) => (
-                    <th key={h} className="px-4 py-3 font-medium">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {rows.map((t) => (
-                  <tr key={t._id}>
-                    <td className="px-4 py-3 pry-ff">
-                      <p className="font-medium text-sec-clr">{t.clinicName || 'Unknown clinic'}</p>
-                      <p className="font-mono text-xs text-gray-500">{t.reference}</p>
-                    </td>
-                    <td className="px-4 py-3 font-medium pry-ff">{formatNaira(t.amount)}</td>
-                    <td className="px-4 py-3 text-gray-600 pry-ff">{formatDate(t.createdAt)}</td>
-                    <td className="px-4 py-3 pry-ff"><PlanBadge plan={t.plan} /></td>
-                    <td className="px-4 py-3 pry-ff">
-                      {capitalize(t.billingCycle)}
-                      <p className="text-xs text-gray-500">{capitalize(t.type)}</p>
-                    </td>
-                    <td className="px-4 py-3 pry-ff">
-                      <span className="rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-acc-clr ring-1 ring-inset ring-green-600/20">
-                        Success
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-
-                {!loading && rows.length === 0 && (
+          {/* Outer box: border + loading overlay (does not scroll).
+              Inner box: the horizontal scroller. */}
+          <div className="relative mt-4 rounded-xl border border-green-100">
+            <div
+              role="region"
+              aria-label="Paystack transactions table"
+              tabIndex={0}
+              className="overflow-x-auto overscroll-x-contain rounded-xl"
+            >
+              <table className="w-full min-w-160 whitespace-nowrap text-sm">
+                <thead className="bg-green-50 text-left text-gray-600 sec-ff uppercase">
                   <tr>
-                    <td colSpan={6} className="px-4 py-10 text-center text-gray-500 pry-ff">
-                      No transactions yet.
-                    </td>
+                    {['Clinic', 'Amount', 'Date', 'Plan', 'Cycle', 'Status'].map((h) => (
+                      <th key={h} className="px-4 py-3 font-medium">{h}</th>
+                    ))}
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {rows.map((t) => (
+                    <tr key={t._id}>
+                      <td className="px-4 py-3 pry-ff">
+                        <p className="font-medium text-sec-clr">{t.clinicName || 'Unknown clinic'}</p>
+                        <p className="font-mono text-xs text-gray-500">{t.reference}</p>
+                      </td>
+                      <td className="px-4 py-3 font-medium pry-ff">{formatNaira(t.amount)}</td>
+                      <td className="px-4 py-3 text-gray-600 pry-ff">{formatDate(t.createdAt)}</td>
+                      <td className="px-4 py-3 pry-ff"><PlanBadge plan={t.plan} /></td>
+                      <td className="px-4 py-3 pry-ff">
+                        {capitalize(t.billingCycle)}
+                        <p className="text-xs text-gray-500">{capitalize(t.type)}</p>
+                      </td>
+                      <td className="px-4 py-3 pry-ff">
+                        <span className="rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-acc-clr ring-1 ring-inset ring-green-600/20">
+                          Success
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+
+                  {!loading && rows.length === 0 && (
+                    <tr>
+                      <td colSpan={6} className="px-4 py-10 text-center text-gray-500 pry-ff">
+                        No transactions yet.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
 
             {loading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/60">
+              <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-white/60">
                 <Loader2 className="animate-spin text-acc-clr" />
               </div>
             )}

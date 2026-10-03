@@ -1,4 +1,4 @@
-// components/billing-summary.tsx
+// components/billings/billing-summary.tsx
 
 import type { SubscriptionState, SubscriptionSummary } from '@/lib/admin-subscriptions';
 import { PlanBadge, capitalize, formatNaira } from './shared';
@@ -33,19 +33,23 @@ export function SummaryCards({ summary, onSelect }: Readonly<Props>) {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+    // Mobile/tablet: swipeable row that bleeds to the screen edges.
+    // Desktop (lg+): normal 4-column grid.
+    <div
+      className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-2 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0"
+    >
       {cards.map((c) => (
         <button
           key={c.label}
           type="button"
           disabled={!c.state}
           onClick={() => c.state && onSelect?.(c.state)}
-          className={`rounded-2xl border border-green-200 p-5 text-left ${
+          className={`w-56 shrink-0 snap-start rounded-2xl border border-green-200 p-5 text-left sm:w-64 lg:w-auto ${
             c.highlight ? 'bg-green-100' : 'bg-green-50'
           } ${c.state ? 'transition hover:border-green-400' : 'cursor-default'}`}
         >
           <p className="text-xs font-medium uppercase tracking-wide text-gray-800 sec-ff">{c.label}</p>
-          <p className="mt-2 text-3xl font-bold text-gray-950 pry-ff">
+          <p className="mt-2 truncate text-3xl font-bold text-gray-950 pry-ff">
             {c.value ?? <span className="text-gray-300">…</span>}
           </p>
           {c.hint && <p className="mt-1 text-xs text-tet-clr sec-ff">{c.hint}</p>}
@@ -60,7 +64,7 @@ export function TierBreakdown({ summary }: Readonly<{ summary: SubscriptionSumma
   const mrr = summary?.mrr ?? 0;
 
   return (
-    <section className="rounded-2xl border border-green-200 bg-pry-clr p-5">
+    <section className="min-w-0 rounded-2xl border border-green-200 bg-pry-clr p-4 sm:p-5">
       <h2 className="text-lg font-semibold text-black-clr sec-ff">Tier breakdown</h2>
       <p className="text-sm text-tet-clr pry-ff">Clinics and MRR contribution per plan</p>
 
@@ -69,7 +73,7 @@ export function TierBreakdown({ summary }: Readonly<{ summary: SubscriptionSumma
           const share = mrr > 0 ? Math.round((t.mrr / mrr) * 100) : 0;
           return (
             <div key={t.plan} className="rounded-xl bg-green-50 p-3">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
                 <div className="flex items-center gap-3">
                   <PlanBadge plan={t.plan} />
                   <span className="text-sm text-tet-clr pry-ff">

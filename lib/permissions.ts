@@ -14,6 +14,7 @@ export const PERMISSIONS = {
   LIST_REFERRALS: "list_referrals",
   VIEW_REFERRAL_DETAILS: "view_referral_details",
   ADD_REFERRAL_EVENT: "add_referral_event",
+  MANAGE_ADDONS: "manage_addons",
   LIST_SUPPORT_REQUESTS: "list_support_requests",
   LIST_ADMINS: "list_admins",
   CREATE_ADMIN: "create_admin",
