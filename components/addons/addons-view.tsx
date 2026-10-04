@@ -19,6 +19,7 @@ import {
 const RESOURCE_LABEL: Record<AddonResource, string> = {
   treatments: "Treatments",
   remindersPerMonth: "Reminders",
+  inventorySkus: "Inventory items",
 };
 
 const formatNaira = (n: number) => `₦${n.toLocaleString("en-NG")}`;
@@ -313,6 +314,7 @@ function AddonsContent() {
           <option value="">All add-ons</option>
           <option value="treatments">Treatments</option>
           <option value="remindersPerMonth">Reminders</option>
+          <option value="inventorySkus">Inventory items</option>
         </select>
         <select
           value={source}

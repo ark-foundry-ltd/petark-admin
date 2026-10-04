@@ -1,7 +1,7 @@
 // lib/admin-addons.ts
 import api from "@/lib/api";
 
-export type AddonResource = "treatments" | "remindersPerMonth";
+export type AddonResource = "treatments" | "remindersPerMonth" | "inventorySkus";
 export type AddonSource = "purchase" | "admin_grant";
 
 export interface ResourceTotals {
